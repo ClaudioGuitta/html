@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body class="dark">
+
+<style>
+    .dark {
+    --background: #212121;
+    --primary: #353535;
+    --secondary: #3d5afe;
+    --textColorOnBackground: rgba(255, 255, 255, 0.85);
+    --secondaryTextColor: rgba(255, 255, 255, 0.7);
+}
+
+.light {
+    --background: #f2f2f2;
+    --primary: #fff;
+    --secondary: #3d5afe;
+    --textColorOnBackground: rgba(0, 0, 0, 0.85);
+    --secondaryTextColor: rgba(0, 0, 0, 0.65);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--background);
+    transition: all 0.1s ease-in-out;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.075);
+    height: 60px;
+    background-color: var(--primary);
+    color: var(--textColorOnBackground);
+    padding: 0 1rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary);
+    color: white;
+    border-radius: 4px;
+    box-shadow: none;
+    border: none;
+    font-weight: 500;
+}
+
+main {
+    display: flex;
+    height: 100%;
+    flex-wrap: wrap;
+}
+
+.card {
+    min-width: 200px;
+    height: 250px;
+    background-color: var(--primary);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.075);
+    border-radius: 11px;
+    margin: 1rem;
+    flex: 1;
+}
+
+h1 {
+    margin: 1rem;
+    color: var(--secondary);
+}
+
+p {
+    margin: 0.5rem 1rem;
+    color: var(--secondaryTextColor);
+}
+</style>
+    <nav>
+        <section class="logo">
+            Logo
+        </section>
+
+        <button id="themeToggle">Toggle theme</button>
+    </nav>
+    <main>
+        <div class="card">
+            <h1>
+                Hi! This is a card
+            </h1>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard
+                dummy text ever since the 1500s
+            </p>
+        </div>
+        <div class="card">
+            <h1>
+                Hi! This is a card
+            </h1>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard
+                dummy text ever since the 1500s
+            </p>
+        </div>
+        <div class="card">
+            <h1>
+                Hi! This is a card
+            </h1>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard
+                dummy text ever since the 1500s
+            </p>
+        </div>
+    </main>
+    <script>
+(function () {
+
+function setTheme(newTheme) {
+    window.__theme = newTheme;
+    preferredTheme = newTheme;
+    document.body.className = newTheme;
+}
+let preferredTheme;
+preferredTheme = localStorage.getItem('theme');
+
+window.__setPreferredTheme = (newTheme) => {
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+setTheme(preferredTheme || 'dark');
+})();
+
+const buttonToggle = document.getElementById("themeToggle");
+buttonToggle.addEventListener("click", toggleTheme)
+
+function toggleTheme() {
+let isDarkMode = window.__theme === "dark"
+window.__setPreferredTheme(isDarkMode ? "light" : "dark")
+}
+
+    </script>
+</body>
+</html>

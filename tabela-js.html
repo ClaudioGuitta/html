@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<style>
+    body{
+        padding: 0;
+        margin: 0;
+        display: flex;
+    }
+
+    table, th, td{
+        border: 1px solid black;
+        align-items: center;
+        text-align: center;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .container{
+        display: grid;
+        width: 80%;
+        margin: auto;
+    }
+
+</style>
+
+
+    <div class="container">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Idade</th>
+            </tr>
+            <tr>
+                <td class="class-id">1</td>
+                <td>João</td>
+                <td>27</td>
+            </tr>
+            <tr>
+                <td class="class-id">2</td>
+                <td>Magali</td>
+                <td>28</td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var ids = document.getElementsByClassName('class-id');
+        let con = document.getElementsByClassName('class-id');
+        var total = [];
+        //console.log(ids.length)
+        for(let i = 0; i < ids.length; i++){
+            total.push(ids[i].innerHTML);
+        }
+        console.log(total);
+    </script>
+</body>
+</html>

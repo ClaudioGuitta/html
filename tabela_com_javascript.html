@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .pinta-linha{
+        background-color: rgb(149, 255, 149);
+    }
+</style>
+<body>
+    <table class="tabela" id="tabela" border="1">
+		<tr>
+			<th> Nome </th>
+			<th> data </th>
+			<th> valor </th>
+		</tr>
+        <tr>
+			<td> Julho </td>
+			<td> 01/01/2021 </td>
+			<td> 10.50 </td>
+		</tr>
+		<tr>
+			<td> Milla </td>
+			<td> 02/02/2021 </td>
+            <td> 8.25 </td>
+		</tr>
+	</table>
+
+<script>
+    let tabela = document.getElementById('tabela');
+    var soma = 0
+    
+    for(i=1; i<tabela.rows.length; i++){
+        //console.log(tabela.rows[i].cells[2].innerHTML);
+        if (tabela.rows[i].cells[2].innerHTML === (' 10.50 ')){
+            console.log('xeta');
+            tabela.rows[i].classList.add('pinta-linha')
+        }
+    }
+    
+</script>
+
+</body>
+</html>

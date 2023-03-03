@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toltip</title>
+</head>
+<body>
+    <style>
+
+body {
+	background-color: #f0f0f0;
+	font-family: sans-serif;
+}
+
+/* INICIO DO TOOLTIP  */
+h1 {
+	width: 60%;
+	margin: 200px auto 0;
+}
+
+.toltip-full {
+	width: 40%;
+	text-align: center;
+	font-size: 2.2rem;
+	padding: 20px;
+	border-radius: 20px;
+	box-shadow: 15px 15px 25px 0px rgba(0, 0, 0, 0.07),
+		-15px -15px 25px 0px rgba(255, 255, 255, 0.8);
+	transition: all 0.5s ease-in-out;
+	display: block;
+	position: relative;
+	cursor: grab;
+}
+
+.toltip-full:hover {
+	box-shadow: inset 15px 15px 25px 0px rgba(0, 0, 0, 0.07),
+		inset -15px -15px 25px 0px rgba(255, 255, 255, 0.8);
+}
+
+.toltip-full::before,
+.toltip-full::after {
+	position: absolute;
+	top: 50%;
+	left: 100%;
+	transform: translate(0, -50%);
+	color: #f0f0f0;
+	visibility: hidden;
+	opacity: 0;
+	transition: 0.5s;
+}
+
+.toltip-full:hover::before,
+.toltip-full:hover::after {
+	visibility: visible;
+	opacity: 1;
+}
+
+.toltip-full::before {
+	content: attr(data-tooltip);
+	background-color: #222;
+	width: 100%;
+	height: auto;
+	border-radius: 10px;
+	display: block;
+	font-size: 1.8rem;
+	padding: 10px;
+	margin-left: 30px;
+	box-shadow: 3px 3px 5px rgb(0 0 0 / 40%);
+}
+
+.toltip-full::after {
+	content: "";
+	width: 0%;
+	height: 0%;
+	border-top: 10px solid rgba(34, 34, 34, 0);
+	border-right: 15px solid #222;
+	border-bottom: 10px solid rgba(34, 34, 34, 0);
+	margin-left: 15px;
+}
+/* FIM DO TOOLTIP  */
+
+    </style>
+<h1>
+	<a class="toltip-full" data-tooltip="Paraíba">João Pessoa</a>
+</h1>
+</body>
+</html>

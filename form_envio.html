@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .form-label{
+            display: inline-block;
+            cursor: default;
+            margin-bottom: .5rem;
+        }
+        .form-control{
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: .375rem;
+            transition: border-color .15s ease-in-out,box-shadow
+        }
+        input {
+            writing-mode: horizontal-tb !important;
+            font-style: ;
+            font-variant-ligatures: ;
+            font-variant-caps: ;
+            font-variant-numeric: ;
+            font-variant-east-asian: ;
+            font-weight: ;
+            font-stretch: ;
+            font-size: ;
+            font-family: ;
+            text-rendering: auto;
+            color: fieldtext;
+            letter-spacing: normal;
+            word-spacing: normal;
+            line-height: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            display: inline-block;
+            text-align: start;
+            appearance: auto;
+            -webkit-rtl-ordering: logical;
+            cursor: text;
+            background-color: field;
+            margin: 0em;
+            padding: 1px 2px;
+            border-width: 2px;
+            border-style: inset;
+            border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+            border-image: initial;
+        }
+    </style>
+
+    <div class="container">
+        <div class="row">
+            <div class="div-form">
+                <label for="setcampo_nu_ano" class="form-label">Altere o campo ano de referência para todos os registros filtrados</label>
+                <input class="form-control" type="number" name="setcampo_nu_ano" id="setcampo_nu_ano" placeholder="Insira um valor fixo">
+            </div>
+            <div class="div-form">
+                <a href="#" id="enviar-dados" onclick="EnviarDados()">enviar</a>
+            </div>
+            <p class="teste">teste</p>
+            <p class="teste">teste</p>
+            <p class="teste">teste</p>
+        </div>
+    </div>
+    
+
+    <script>
+        function EnviarDados(){
+            let dados = document.getElementById('setcampo_nu_ano').value;
+            let teste = document.getElementsByClassName('teste');
+            console.log(dados)
+            for (let i = 0 ; i < teste.length; i++){
+                teste[i].setAttribute('ok', 'ok');
+            }
+            
+            //console.log(teste)
+            //teste.setAttribute('ok', 'ok')
+            
+            
+            
+            //console.log(dados);
+            dados = document.querySelector('#setcampo_nu_ano');
+            dados.value = null;
+            
+        }
+    </script>
+</body>
+</html>

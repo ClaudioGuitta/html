@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <select name="select-teste" id="select-teste">
+        <option value="1">teste 1</option>
+        <option value="2">teste 2</option>
+        <option value="3">teste 3</option>
+    </select> 
+    <button onclick="select_teste()">ok</button>
+
+
+    <script>
+        function select_teste(){
+            var select = document.getElementById('select-teste');
+            var value = select.options[select.selectedIndex].value;
+            console.log(value);
+        }
+    </script>
+</body>
+</html>

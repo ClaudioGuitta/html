@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+:root {
+    --speed: 200ms;
+}
+
+.menu-primary-enter {
+    transform: translateX(-110%);
+}
+
+.menu-primary-enter-active {
+    transform: translateX(0%);
+    transition: all var(--speed) ease;
+}
+
+.menu-primary-exit {
+    position: absolute;
+    top: 0;
+}
+
+.menu-primary-exit-active {
+    transform: translateX(-110%);
+    transition: all var(--speed) ease;
+}
+
+.menu-secondary-enter {
+    transform: translateX(110%);
+}
+
+.menu-secondary-enter-active {
+    transform: translateX(0%);
+    transition: all var(--speed) ease;
+}
+
+.menu-secondary-exit {
+    position: absolute;
+}
+
+.menu-secondary-exit-active {
+    transform: translateX(300px);
+    transition: all var(--speed) ease;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh;
+    width: 100vw;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.sidebar-wrapper {
+    padding: 0 0;
+    overflow: hidden;
+    border-right: 1px solid rgba(0, 0, 0, 0.089);
+    width: 300px;
+    min-height: 100vh;
+    position: relative;
+    will-change: width;
+}
+
+.menu {
+    overflow: hidden;
+    transition: all linear 0.4s;
+    padding: 10px;
+}
+
+.menu-item {
+    width: 280px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 250ms;
+    padding: 0.4rem 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.1rem;
+    border-radius: 11px;
+}
+
+.menu-item:hover {
+    background-color: rgba(0, 0, 0, 0.055);
+    color: #3d5afe;
+    cursor: pointer;
+}
+
+.menu-item > .icon {
+    background-color: rgba(0, 0, 0, 0.055);
+    border-radius: 50%;
+    height: 40px;
+    margin-right: 1rem;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-item > .label {
+    flex: 1;
+}
+
+    </style>
+
+    <aside id="sidebar" class="sidebar-wrapper">
+    </aside>
+
+    <script>
+const menu = [
+    {
+        parent: 'aliments',
+        label: 'Aliments',
+        icon: '🍕',
+        click: goToChild,
+        child: [
+            { parent: 'aliments', label: 'Back', icon: '<', click: backToParent },
+            { parent: 'aliments', label: 'Pizza', icon: '🍕' },
+            { parent: 'aliments', label: 'Hamburguer', icon: '🍔' },
+            { parent: 'aliments', label: 'Bacon', icon: '🥓' },
+        ],
+        rightIcon: '>',
+    },
+    {
+        parent: 'colors',
+        label: 'Colors',
+        icon: '🖌',
+        click: goToChild,
+        child: [
+            { parent: 'colors', label: 'Back', icon: '<', click: backToParent },
+            { parent: 'colors', label: 'Blue', icon: '🔵' },
+            { parent: 'colors', label: 'Yellow', icon: '🟡' },
+            { parent: 'colors', label: 'Red', icon: '🔴' },
+            { parent: 'colors', label: 'Green', icon: '🟢' },
+        ],
+        rightIcon: '>',
+    }
+]
+
+function backToParent(event) {
+
+    const { id } = event.currentTarget.dataset
+
+    let moveIn = document.getElementById("menu");
+    moveIn.className = 'menu menu-primary-enter menu-primary-enter-active'
+
+    let moveOut = document.getElementById(id);
+    moveOut.className = 'menu menu-secondary-exit menu-secondary-exit-active'
+
+}
+
+function goToChild(event) {
+
+    const { id } = event.currentTarget.dataset
+
+    let moveIn = document.getElementById(id);
+    moveIn.className = 'menu menu-secondary-enter menu-secondary-enter-active'
+
+
+    let moveOut = document.getElementById("menu");
+    moveOut.className = 'menu menu-primary-exit menu-primary-exit-active'
+
+}
+
+const createMenuItem = (item) => {
+    let li = document.createElement("li");
+    li.className = 'menu-item'
+    li.innerHTML = `    
+            <div class="icon">${item.icon}</div>
+            <span class="label">${item.label}</span>
+            <div>${item.rightIcon || ''}</div>
+        `
+    li.dataset.id = item.parent
+    li.onclick = item.click
+
+    return li
+}
+
+const createChildMenu = (items) => {
+    const sidebar = document.getElementById("sidebar")
+    const menu = document.createElement("ul");
+    menu.className = 'menu menu-secondary-exit menu-secondary-exit-active'
+    menu.id = items[0].parent
+    items.map(el => {
+        let li = createMenuItem(el)
+        menu.appendChild(li)
+    })
+    sidebar.appendChild(menu)
+}
+
+const buildMenu = () => {
+
+    const sidebar = document.getElementById("sidebar")
+    const mainMenu = document.createElement("ul");
+    mainMenu.className = 'menu'
+    mainMenu.id = 'menu'
+    menu.map(el => {
+        let li = createMenuItem(el)
+        mainMenu.appendChild(li)
+        createChildMenu(el.child)
+    })
+    sidebar.appendChild(mainMenu)
+}
+
+buildMenu()
+    </script>
+</body>
+</html>
